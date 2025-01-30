@@ -66,13 +66,13 @@ class PokemonMove(BaseModel):
 class PokemonSprite(BaseModel):
     pokemon_id = IntegerField(primary_key=True)
     back_default = TextField()
-    back_female = TextField()
+    back_female = TextField(null=True)
     back_shiny = TextField()
-    back_female_shiny = TextField()
+    back_female_shiny = TextField(null=True)
     front_default = TextField()
-    front_female = TextField()
+    front_female = TextField(null=True)
     front_shiny = TextField()
-    front_shiny_female = TextField()
+    front_shiny_female = TextField(null=True)
 
 
 class PokemonStat(BaseModel):
