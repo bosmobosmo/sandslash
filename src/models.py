@@ -59,25 +59,10 @@ class PokemonHeldItem(BaseModel):
     name = TextField()
 
 
-class PokemonHeldItemVersionDetail(BaseModel):
-    id = AutoField(primary_key=True)
-    pokemon_held_item_id = IntegerField(index=True)
-    rarity = IntegerField()
-    name = TextField()
-
-
 class PokemonMove(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_id = IntegerField(index=True)
     name = TextField()
-
-
-class PokemonMoveVersionGroupDetail(BaseModel):
-    id = AutoField(primary_key=True)
-    pokemon_move_id = IntegerField(index=True)
-    level_learned_at = IntegerField()
-    move_learn_method = TextField()
-    version_group = TextField()
 
 
 class PokemonSprite(BaseModel):
@@ -123,9 +108,7 @@ if __name__ == "__main__":
             PokemonAbility,
             PokemonForm,
             PokemonHeldItem,
-            PokemonHeldItemVersionDetail,
             PokemonMove,
-            PokemonMoveVersionGroupDetail,
             PokemonSprite,
             PokemonStat,
             PokemonType,
