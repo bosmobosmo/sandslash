@@ -66,6 +66,7 @@ class PokemonMove(BaseModel):
 
 
 class PokemonSprite(BaseModel):
+    pokemon_id = IntegerField(primary_key=True)
     back_default = TextField()
     back_female = TextField()
     back_shiny = TextField()
