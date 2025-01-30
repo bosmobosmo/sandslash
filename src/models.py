@@ -53,14 +53,6 @@ class PokemonForm(BaseModel):
     pokemon_id = IntegerField(index=True)
 
 
-class PokemonFormType(BaseModel):
-    form_id = IntegerField()
-    type_id = IntegerField()
-
-    class Meta:
-        primary_key = CompositeKey("form_id", "type_id")
-
-
 class PokemonHeldItem(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_id = IntegerField()
@@ -130,7 +122,6 @@ if __name__ == "__main__":
             Pokemon,
             PokemonAbility,
             PokemonForm,
-            PokemonFormType,
             PokemonHeldItem,
             PokemonHeldItemVersionDetail,
             PokemonMove,
