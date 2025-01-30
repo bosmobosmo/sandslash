@@ -1,14 +1,21 @@
-from peewee import AutoField, BooleanField, CompositeKey, IntegerField, Model, TextField
+from peewee import AutoField, BooleanField, CompositeKey, IntegerField, Model, SqliteDatabase, TextField
+
+db = SqliteDatabase("poke.db")
 
 
-class Ability(Model):
+class BaseModel(Model):
+    class Meta:
+        database = db
+
+
+class Ability(BaseModel):
     id = IntegerField(primary_key=True)
     name = TextField()
     effect = TextField()
     flavor_text = TextField()
 
 
-class Pokemon(Model):
+class Pokemon(BaseModel):
     id = IntegerField(primary_key=True)
     name = TextField()
     base_experience = IntegerField()
@@ -20,7 +27,7 @@ class Pokemon(Model):
     is_default = BooleanField()
 
 
-class PokemonAbility(Model):
+class PokemonAbility(BaseModel):
     pokemon_id = IntegerField()
     ability_id = IntegerField()
     is_hidden = BooleanField()
@@ -32,13 +39,13 @@ class PokemonAbility(Model):
         primary_key = CompositeKey("pokemon_id", "ability_id")
 
 
-class PokemonForm(Model):
+class PokemonForm(BaseModel):
     id = AutoField(primary_key=True)
     name = TextField()
     pokemon_id = IntegerField(index=True)
 
 
-class PokemonFormType(Model):
+class PokemonFormType(BaseModel):
     form_id = IntegerField()
     type_id = IntegerField()
 
@@ -46,26 +53,26 @@ class PokemonFormType(Model):
         primary_key = CompositeKey("form_id", "type_id")
 
 
-class PokemonHeldItem(Model):
+class PokemonHeldItem(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_id = IntegerField()
     name = TextField()
 
 
-class PokemonHeldItemVersionDetail(Model):
+class PokemonHeldItemVersionDetail(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_held_item_id = IntegerField(index=True)
     rarity = IntegerField()
     name = TextField()
 
 
-class PokemonMove(Model):
+class PokemonMove(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_id = IntegerField(index=True)
     name = TextField()
 
 
-class PokemonMoveVersionGroupDetail(Model):
+class PokemonMoveVersionGroupDetail(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_move_id = IntegerField(index=True)
     level_learned_at = IntegerField()
@@ -73,7 +80,7 @@ class PokemonMoveVersionGroupDetail(Model):
     version_group = TextField()
 
 
-class PokemonSprite(Model):
+class PokemonSprite(BaseModel):
     back_default = TextField()
     back_female = TextField()
     back_shiny = TextField()
@@ -84,7 +91,7 @@ class PokemonSprite(Model):
     front_shiny_female = TextField()
 
 
-class PokemonStat(Model):
+class PokemonStat(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_id = IntegerField(index=True)
     name = TextField()
@@ -92,7 +99,7 @@ class PokemonStat(Model):
     effort = IntegerField()
 
 
-class PokemonType(Model):
+class PokemonType(BaseModel):
     pokemon_id = IntegerField()
     type_id = IntegerField()
     is_past = BooleanField(default=False)
@@ -102,6 +109,6 @@ class PokemonType(Model):
         primary_key = CompositeKey("pokemon_id", "type_id")
 
 
-class Type(Model):
+class Type(BaseModel):
     id = IntegerField(primary_key=True)
     name = TextField()
