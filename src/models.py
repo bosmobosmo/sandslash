@@ -1,4 +1,12 @@
-from peewee import AutoField, BooleanField, CompositeKey, IntegerField, Model, SqliteDatabase, TextField
+from peewee import (
+    AutoField,
+    BooleanField,
+    CompositeKey,
+    IntegerField,
+    Model,
+    SqliteDatabase,
+    TextField,
+)
 
 db = SqliteDatabase("poke.db")
 
@@ -112,3 +120,23 @@ class PokemonType(BaseModel):
 class Type(BaseModel):
     id = IntegerField(primary_key=True)
     name = TextField()
+
+
+if __name__ == "__main__":
+    db.connect()
+    db.create_tables(
+        [
+            Ability,
+            Pokemon,
+            PokemonAbility,
+            PokemonForm,
+            PokemonFormType,
+            PokemonHeldItem,
+            PokemonHeldItemVersionDetail,
+            PokemonMove,
+            PokemonMoveVersionGroupDetail,
+            PokemonSprite,
+            PokemonStat,
+            PokemonType,
+        ]
+    )
