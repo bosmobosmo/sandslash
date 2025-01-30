@@ -40,8 +40,6 @@ class PokemonAbility(BaseModel):
     ability_id = IntegerField()
     is_hidden = BooleanField()
     slot = IntegerField()
-    is_past = BooleanField(default=False)
-    generation = TextField(null=True)
 
     class Meta:
         primary_key = CompositeKey("pokemon_id", "ability_id")
@@ -88,8 +86,6 @@ class PokemonStat(BaseModel):
 class PokemonType(BaseModel):
     pokemon_id = IntegerField()
     type_id = IntegerField()
-    is_past = BooleanField(default=False)
-    generation = TextField(null=True)
 
     class Meta:
         primary_key = CompositeKey("pokemon_id", "type_id")
