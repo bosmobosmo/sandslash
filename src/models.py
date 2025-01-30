@@ -109,6 +109,7 @@ if __name__ == "__main__":
             PokemonSprite,
             PokemonStat,
             PokemonType,
+            Type,
         ]
     )
     db.close()
