@@ -79,7 +79,7 @@ class PokemonStat(BaseModel):
     id = AutoField(primary_key=True)
     pokemon_id = IntegerField(index=True)
     name = TextField()
-    base_state = IntegerField()
+    base_stat = IntegerField()
     effort = IntegerField()
 
 
