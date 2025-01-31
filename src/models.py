@@ -19,7 +19,7 @@ class BaseModel(Model):
 class Ability(BaseModel):
     id = IntegerField(primary_key=True)
     name = TextField()
-    effect = TextField()
+    effect = TextField(null=True)
     flavor_text = TextField()
 
 
@@ -65,13 +65,13 @@ class PokemonMove(BaseModel):
 
 class PokemonSprite(BaseModel):
     pokemon_id = IntegerField(primary_key=True)
-    back_default = TextField()
+    back_default = TextField(null=True)
     back_female = TextField(null=True)
-    back_shiny = TextField()
+    back_shiny = TextField(null=True)
     back_female_shiny = TextField(null=True)
-    front_default = TextField()
+    front_default = TextField(null=True)
     front_female = TextField(null=True)
-    front_shiny = TextField()
+    front_shiny = TextField(null=True)
     front_shiny_female = TextField(null=True)
 
 
@@ -96,8 +96,7 @@ class Type(BaseModel):
     name = TextField()
 
 
-if __name__ == "__main__":
-    db.connect()
+def create_tables() -> None:
     db.create_tables(
         [
             Ability,
@@ -112,4 +111,3 @@ if __name__ == "__main__":
             Type,
         ]
     )
-    db.close()
