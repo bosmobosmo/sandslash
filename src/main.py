@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 import os
 
-from models import Pokemon
+from models import Pokemon, create_tables
 from scraper import scrape
 from server import app
 
@@ -43,5 +43,7 @@ if __name__ == "__main__":
             scrape_continuously()
         case "serve":
             app.run()
+        case "init":
+            create_tables()
         case _:
             print(f"Command {args.command} not found")
