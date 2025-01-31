@@ -22,8 +22,6 @@ def scrape_continuously() -> None:
     while True:
         try:
             # Skip stored Pokemons
-            if pokemon_id == 10:
-                break
             while pokemon_id in Pokemon:
                 pokemon_id += 1
                 # id jumps from 1025 to 10001
