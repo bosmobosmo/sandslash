@@ -110,7 +110,3 @@ def scrape(pokemon_id=str):
         except:
             tx.rollback()
             raise
-
-
-if __name__ == "__main__":
-    scrape("1")
