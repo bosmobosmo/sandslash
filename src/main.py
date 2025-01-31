@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 import os
 
@@ -33,5 +34,13 @@ def scrape_continuously() -> None:
             with last_attempt_note.open("w") as f:
                 f.write(str(pokemon_id))
 
+
 if __name__ == "__main__":
-    scrape_continuously()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("command")
+    args = parser.parse_args()
+    match args.command:
+        case "scrape":
+            scrape_continuously()
+        case _:
+            print(f"Command {args.command} not found")
