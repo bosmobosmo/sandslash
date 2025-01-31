@@ -4,6 +4,7 @@ import os
 
 from models import Pokemon
 from scraper import scrape
+from server import app
 
 START_ID = os.environ.get("START_ID", 0)
 
@@ -40,5 +41,7 @@ if __name__ == "__main__":
     match args.command:
         case "scrape":
             scrape_continuously()
+        case "serve":
+            app.run()
         case _:
             print(f"Command {args.command} not found")
