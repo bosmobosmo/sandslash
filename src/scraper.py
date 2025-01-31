@@ -18,6 +18,7 @@ POKEAPI_BASE_URL = "https://pokeapi.co/api/v2/"
 
 
 def scrape(pokemon_id=str):
+    print(f"Scraping id {pokemon_id}")
     # Fetch from API
     pokemon_response = requests.get(f"{POKEAPI_BASE_URL}pokemon/{pokemon_id}")
     pokemon_response.raise_for_status()
