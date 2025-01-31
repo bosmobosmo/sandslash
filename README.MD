@@ -5,6 +5,8 @@
 - [Poetry](https://python-poetry.org/)
 
 ## Commands
+The commands are called using `python src/main.py <command>`.
+
 `scrape`: Scrape pokemon data and store them into a local database. This will do fetches sequentially starting from id stored in `last_scrape_attempt.txt` or the env var `START_ID`, whichever is bigger. Any pokemons already scraped will be skipped.
 
 `serve`: Starts a Flask server that returns pokemon data. The route is `/pokemon?id=<pokemon-id>`.
@@ -25,3 +27,6 @@ Because it's fast and easy.
 
 ### Why some data are omitted
 To reduce the number of tables. Some metadata can be omitted without compromising the description of the pokemon. The project's goal is to showcase the ability to store data efficiently, not to make yet another highly detailed pokemon database.
+
+### Why Sandslash
+Because it scrapes.
