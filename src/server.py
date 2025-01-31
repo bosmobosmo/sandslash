@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from flask import request
+from flask import Flask, request
 from werkzeug.exceptions import BadRequest, NotFound
 from werkzeug.wrappers import Response
 
@@ -16,6 +16,8 @@ from models import (
     PokemonType,
     Type,
 )
+
+app = Flask(__name__)
 
 
 class PokemonAbilityDict(TypedDict):
@@ -44,12 +46,14 @@ class PokemonDict(TypedDict):
     weight: int
 
 
-def serve_pokemon() -> Response:
+@app.route("/pokemon", methods=['GET'])
+def serve_pokemon() -> dict[str, object]:
     pokemon_id = request.args.get("id", None)
     if pokemon_id is None:
         raise BadRequest
     if int(pokemon_id) not in Pokemon:
         raise NotFound
+    return get_pokemon(pokemon_id)
 
 
 def get_pokemon(pokemon_id: int) -> PokemonDict:
